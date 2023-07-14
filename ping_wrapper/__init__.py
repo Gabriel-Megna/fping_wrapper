@@ -1,14 +1,8 @@
-from ping_wrapper.backends import nmap
 from ping_wrapper.backends import fping
-from ping_wrapper.backends import ping
 
-backends = {
-    "nmap":   nmap.pinger_class,
-    "fping": fping.pinger_class,
-    "ping":   ping.pinger_class,
-}
+backends = {"fping": fping.pinger_class}
 
-default_priority = "nmap", "fping", "ping"
+default_priority = "fping"
 
 def get_backend(priority=None, **kwargs):
     if not priority:
@@ -37,4 +31,3 @@ def ping_many(hosts):
 
 def ping_many_iter(hosts):
     return get_backend().ping_many_iter(hosts)
-
